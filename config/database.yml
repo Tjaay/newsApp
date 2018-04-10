@@ -1,0 +1,30 @@
+# SQLite version 3.x
+#   gem install sqlite3
+#
+#   Ensure the SQLite 3 gem is defined in your Gemfile
+#   gem 'sqlite3'
+#
+default: &default
+  adapter: sqlite3
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: root
+  password:
+  timeout: 5000
+  
+
+development:
+  <<: *default
+  adapter: sqlite3
+  database: news_app_development
+
+test:
+  <<: *default
+  adapter: sqlite3
+  database: news_app_test
+
+production:
+  <<: *default
+  adapter: postgresql
+  database: news_app
+  username: news_app
+  password: <%= ENV['NEWS_APP_DATABASE_PASSWORD'] %>
