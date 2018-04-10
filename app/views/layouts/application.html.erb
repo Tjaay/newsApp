@@ -26,9 +26,14 @@
             <a class="navbar-brand" href="#">NewsApp</a>
         </div>
 
-          <ul>
-          <%= link_to "Log out", logout_path, method: :delete, class: "nav-item nav-link" %>
-          </ul>
+             <% if logged_in? %>
+             <%= button_to "Log out", logout_path, method: :delete, class: "btn btn-info btn-md pull-right logoutBtn" %>
+          <% else %>
+          <ul class="pull-right">
+            Sign Up
+        </ul>
+          <% end %>
+     
                                 </div>
                             </div>
                         </li>

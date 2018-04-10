@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 body {
-    background:#BBDEFB!important;
+    background:#EEEEEE!important;
   }
       /* Social feed */
   
@@ -97,5 +97,9 @@ body {
             background-color: inherit;
             border-top:0 none;
         }
+    }
+
+    .logoutBtn {
+     margin-top:8px;
     }
       

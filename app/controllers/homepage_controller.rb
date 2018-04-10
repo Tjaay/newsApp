@@ -12,7 +12,7 @@ class HomepageController < ApplicationController
       redirect_to(news_index_path)
     else
       flash.now[:danger] = "Invalid email/password combination"
-      render "new"
+      render "index"
     end
   end
 
