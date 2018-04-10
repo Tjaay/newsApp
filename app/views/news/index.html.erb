@@ -1,0 +1,45 @@
+
+
+<div class="container">
+        <% @articles.each do |article| %>
+         <div class="col-md-4">
+            <div class="social-feed-separated">
+                <div class="social-feed-box">
+                    <div class="pull-right social-action dropdown">
+                        <button data-toggle="dropdown" class="dropdown-toggle btn-white">
+                            <i class="fa fa-angle-down"></i>
+                        </button>
+                        <ul class="dropdown-menu m-t-xs">
+                            <li>
+                                <a href="#">Config</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="social-avatar">
+                       <h3><%= article.source %> </h3>
+                        <a href="<%= article.url %>">
+                            <%= article.title %>
+                        </a>
+                        <small class="text-muted"> <%= article.date %> </small>
+                    </div>
+                    <div class="social-body">
+                        <img src="<%= article.image %>">
+                        <p>
+                         <%= article.description %>
+                        </p>
+                        <div class="btn-group">
+                            <button class="btn btn-white btn-xs">
+                                <i class="fa fa-thumbs-up"></i> Like this!</button>
+                            <button class="btn btn-white btn-xs">
+                                <i class="fa fa-comments"></i> Comment</button>
+                            <button class="btn btn-white btn-xs">
+                                <i class="fa fa-share"></i> Share</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+               </div>
+            <% end %>
+</div>
+</body>
+
