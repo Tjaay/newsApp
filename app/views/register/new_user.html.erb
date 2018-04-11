@@ -1,9 +1,10 @@
-<div class="container">
+<div class="container-fluid">
 <h1>Sign up</h1>
 
-<% flash.each do |key, value| %>
-  <%= content_tag :div, value, class: "flash #{key}" %>
-<% end %>
+<% flash.each do |message_type, message| %>
+  <div class="alert alert-<%= message_type %>"><%= message %></div>
+ <% end %>
+  </div>
 
 <%= form_for(:user, url: signup_path) do |f| %>
   <div class="form-group">
