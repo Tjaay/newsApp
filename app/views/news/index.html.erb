@@ -11,7 +11,7 @@
                         </button>
                         <ul class="dropdown-menu m-t-xs">
                             <li>
-                                <a href="#">Config</a>
+                                <a href="#">Report</a>
                             </li>
                         </ul>
                     </div>
@@ -27,14 +27,17 @@
                         <p>
                          <%= article.description %>
                         </p>
+
                         <div class="btn-group">
-                            <button class="btn btn-white btn-xs">
-                                <i class="fa fa-thumbs-up"></i> Upvote</button>
-                            <button class="btn btn-white btn-xs">
-                                <i class="fa fa-thumbs-down"></i> Downvote</button>
-                            <button class="btn btn-white btn-xs">
-                                <i class="fa fa-comment"></i> Comment</button>
+                            <%= button_to upvote_news_path(article), method: :post, class: "btn btn-white btn-xs" do%>
+                              <i class="fa fa-thumbs-up"></i>
+                            <% end %>
+                            <%= button_to downvote_news_path(article), method: :post, class:"btn btn-white btn-xs" do%>
+                              <i class="fa fa-thumbs-down"></i>
+                            <% end %>
+                            <%= pluralize(article.votes.count, "vote") %>
                         </div>
+
                     </div>
                 </div>
             </div>

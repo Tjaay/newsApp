@@ -1,6 +1,6 @@
 class NewsController < ApplicationController
   include HomepageHelper
-  before_action only: [:show, :edit, :new, :update, :destroy, :upvote, :downvote]
+  before_action :set_article, only: [:show, :edit, :new, :update, :destroy, :upvote, :downvote]
   require "rest-client"
   require "json"
 
@@ -9,6 +9,10 @@ class NewsController < ApplicationController
     if @articles.empty?
       get_news
     end
+  end
+
+  def show
+    redirect_to(news_index_path)
   end
 
   def destroy
@@ -24,13 +28,13 @@ class NewsController < ApplicationController
       flash[:error] = "You need to be logged in to upvote."
     end
 
-    redirect_to(news_path)
+    redirect_to(news_index_path)
   end
 
   # POST /topics/1
   def downvote
     @article.votes.last.destroy
-    redirect_to(news_path)
+    redirect_to(news_index_path)
   end
 
   def get_news
@@ -43,5 +47,12 @@ class NewsController < ApplicationController
                      :description => article["description"], :url => article["url"],
                      :image => article["urlToImage"], :date => article["publishedAt"])
     end
+  end
+
+  private
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_article
+    @article = Article.find_by(id: params[:id])
   end
 end
