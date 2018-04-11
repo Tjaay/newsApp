@@ -103,7 +103,16 @@ body {
      margin-top:8px;
     }
 
-    .btn-group {
-        display:inline;
+    .btn-group button {
+      margin-right:10px;
+      background-color:#0288D1;
+      color:white;
     }
+
+    .btn-group button:hover {
+      background-color:#29B6F6;
+      color:white;
+    }
+
+    
       

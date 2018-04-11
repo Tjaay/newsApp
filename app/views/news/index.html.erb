@@ -1,6 +1,9 @@
 
 
 <div class="container">
+  <% if logged_in? %>
+    <h4>Welcome <%= current_user.name %> </h4>
+  <% end %>
         <% @articles.each do |article| %>
          <div class="col-md-4">
             <div class="social-feed-separated">
@@ -29,14 +32,29 @@
                         </p>
 
                         <div class="btn-group">
-                            <%= button_to upvote_news_path(article), method: :post, class: "btn btn-white btn-xs" do%>
-                              <i class="fa fa-thumbs-up"></i>
+                            <%= link_to upvote_news_path(article), method: :post do%>
+                                <button type="button" class="btn btn-secondary">
+                                <i class="fa fa-thumbs-up"></i>
+                                </button>
                             <% end %>
-                            <%= button_to downvote_news_path(article), method: :post, class:"btn btn-white btn-xs" do%>
-                              <i class="fa fa-thumbs-down"></i>
+                            <% unless article.votes.count.zero? %>
+                              <%= link_to downvote_news_path(article), method: :post do%>
+                                 <button type="button" class="btn btn-secondary">
+                                <i class="fa fa-thumbs-down"></i>
+                                </button>
+                              <% end %>
                             <% end %>
-                            <%= pluralize(article.votes.count, "vote") %>
+                              <%= link_to news_index_path do%>
+                                 <button type="button" class="btn btn-secondary">
+                                <i class="fa fa-comment"></i>
+                                </button>
+                              <% end %>
                         </div>
+                          <% if article.votes.count.zero? %>
+                                <p> No reliability rating </p>
+                              <% else %>
+                                <%= pluralize(article.votes.count, "Reliable Upvotes") %>
+                              <% end %>
 
                     </div>
                 </div>
