@@ -6,7 +6,9 @@ class NewsController < ApplicationController
 
   def index
     @articles = Article.all
-    get_news
+    if @articles.empty?
+      get_news
+    end
   end
 
   def destroy

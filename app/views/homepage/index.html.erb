@@ -1,6 +1,11 @@
 <div class="container bootstrap snippet">
     <div class="row login-page"> 
         <div class="col-md-4 col-lg-4 col-md-offset-4 col-lg-offset-4"> 
+		    <div class="container-fluid">
+      			<% flash.each do |message_type, message| %>
+        	<div class="alert alert-<%= message_type %>"><%= message %></div>
+      			<% end %>
+        </div>
     		<h1>NewsApp.com</h1>
 			<h5>Login to see the news feed, if you don't have an account sign up for one now.</h5> 
             <%= form_for(:session, url: login_path) do |f| %>
