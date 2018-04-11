@@ -11,6 +11,7 @@ class RegisterController < ApplicationController
       redirect_to root_url
       #UserMailer.welcome_email(@user).deliver_now
     else
+      flash.now[:danger] = "Invalid email/password combination"
       render "new_user"
     end
   end

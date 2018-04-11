@@ -1,5 +1,10 @@
 <div class="container">
 <h1>Sign up</h1>
+
+<% flash.each do |key, value| %>
+  <%= content_tag :div, value, class: "flash #{key}" %>
+<% end %>
+
 <%= form_for(:user, url: signup_path) do |f| %>
   <div class="form-group">
     <%= f.label :name %>
