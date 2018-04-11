@@ -14,6 +14,7 @@ class NewsController < ApplicationController
   def destroy
     log_out
     redirect_to root_url
+    flash[:danger] = "successfully loged out"
   end
 
   def upvote

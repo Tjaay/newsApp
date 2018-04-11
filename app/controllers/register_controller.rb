@@ -7,7 +7,7 @@ class RegisterController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      flash[:success] = "Signup successful."
+      flash[:success] = "Signup successful try loggin in."
       redirect_to root_url
       #UserMailer.welcome_email(@user).deliver_now
     else
