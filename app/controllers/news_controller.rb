@@ -25,7 +25,7 @@ class NewsController < ApplicationController
     if logged_in?
       @article.votes.create(user: current_user)
     else
-      flash[:error] = "You need to be logged in to upvote."
+      flash[:danger] = "You need to be logged in to upvote."
     end
 
     redirect_to(news_index_path)
@@ -33,7 +33,11 @@ class NewsController < ApplicationController
 
   # POST /topics/1
   def downvote
-    @article.votes.last.destroy
+    if logged_in?
+      @article.votes.last.destroy
+    else
+      flash[:danger] = "You need to be logged in to downvote."
+    end
     redirect_to(news_index_path)
   end
 

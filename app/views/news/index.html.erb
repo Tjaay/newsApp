@@ -1,6 +1,11 @@
 
 
 <div class="container">
+		    <div class="container-fluid">
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
+        </div>
   <% if logged_in? %>
     <h4>Welcome <%= current_user.name %> </h4>
   <% end %>
