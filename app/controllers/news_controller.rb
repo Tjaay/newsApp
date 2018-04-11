@@ -1,11 +1,12 @@
 class NewsController < ApplicationController
   include HomepageHelper
-  before_action only: [:show, :edit, :new, :update, :destroy, :upvote, :downvote]
+  before_action only:, get_news: [:show, :edit, :new, :update, :destroy, :upvote, :downvote]
   require "rest-client"
   require "json"
 
   def index
     @articles = Article.all
+    get_news
   end
 
   def destroy
