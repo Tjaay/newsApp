@@ -1,6 +1,6 @@
 class NewsController < ApplicationController
   include HomepageHelper
-  before_action only: [:show, :edit, :new, :update, :destroy]
+  before_action only: [:show, :edit, :new, :update, :destroy, :upvote, :downvote]
   require "rest-client"
   require "json"
 
@@ -11,6 +11,22 @@ class NewsController < ApplicationController
   def destroy
     log_out
     redirect_to root_url
+  end
+
+  def upvote
+    if logged_in?
+      @article.votes.create(user: current_user)
+    else
+      flash[:error] = "You need to be logged in to upvote."
+    end
+
+    redirect_to(news_path)
+  end
+
+  # POST /topics/1
+  def downvote
+    @article.votes.last.destroy
+    redirect_to(news_path)
   end
 
   private

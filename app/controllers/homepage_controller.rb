@@ -18,6 +18,5 @@ class HomepageController < ApplicationController
 
   def destroy
     log_out
-    redirect_to topics_url
   end
 end

@@ -9,6 +9,7 @@ class RegisterController < ApplicationController
     if @user.save
       flash[:success] = "Signup successful."
       redirect_to root_url
+      UserMailer.welcome_email(@user).deliver_now
     else
       render "new_user"
     end
